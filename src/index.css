@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "messageapp-light";
+  default: true;
+  color-scheme: light;
+
+  --color-base-100: #f8fafc;
+  --color-base-200: #eef2ff;
+  --color-base-300: #e2e8f0;
+  --color-base-content: #0f172a;
+
+  --color-primary: #6366f1;
+  --color-primary-content: #ffffff;
+  --color-secondary: #0ea5e9;
+  --color-secondary-content: #ffffff;
+  --color-accent: #14b8a6;
+  --color-accent-content: #062a28;
+
+  --color-neutral: #1e293b;
+  --color-neutral-content: #f8fafc;
+  --color-info: #38bdf8;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "messageapp-dark";
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #0b1120;
+  --color-base-200: #111827;
+  --color-base-300: #1f2937;
+  --color-base-content: #e5e7eb;
+
+  --color-primary: #818cf8;
+  --color-primary-content: #0b1020;
+  --color-secondary: #38bdf8;
+  --color-secondary-content: #07253a;
+  --color-accent: #2dd4bf;
+  --color-accent-content: #04211d;
+
+  --color-neutral: #e2e8f0;
+  --color-neutral-content: #0f172a;
+  --color-info: #38bdf8;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-base-100 text-base-content;
+}
+
+.active {
+  @apply bg-primary text-primary-content rounded-md;
+}
+html {
+  scroll-behavior: smooth;
+}

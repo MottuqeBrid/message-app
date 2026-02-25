@@ -1,0 +1,204 @@
+@import "tailwindcss";
+@import "react-loading-skeleton/dist/skeleton.css";
+@plugin "daisyui";
+
+/* Nuris Creations Theme - Light and Dark Mode */
+/* Colors extracted from logo.png */
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  /* Light Theme - Primary Colors */
+  --color-primary: #7c3aed; /* Royal Lavender */
+  --color-primary-dark: #5b21b6;
+  --color-primary-light: #c4b5fd;
+
+  /* Soft Gold - Secondary */
+  --color-secondary: #d4a017;
+  --color-secondary-dark: #a16207;
+  --color-secondary-light: #facc15;
+
+  /* Sky Blue - Accent */
+  --color-accent: #0ea5e9;
+  --color-accent-dark: #0369a1;
+  --color-accent-light: #7dd3fc;
+
+  /* Light Theme Backgrounds */
+  --bg-primary: #faf9ff;
+  --bg-secondary: #f3f0ff;
+  --bg-tertiary: #e9e5ff;
+
+  /* Light Theme Text */
+  --text-primary: #1e1b4b;
+  --text-secondary: #4c1d95;
+  --text-tertiary: #6a62a3;
+
+  /* Light Theme Borders */
+  --border-color: #ddd6fe;
+  --border-dark: #c4b5fd;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  /* Dark Theme - Core Colors */
+  --color-primary: #c4b5fd;
+  --color-primary-dark: #8b5cf6;
+  --color-primary-light: #ddd6fe;
+
+  --color-secondary: #facc15;
+  --color-secondary-dark: #ca8a04;
+  --color-secondary-light: #fde047;
+
+  --color-accent: #38bdf8;
+  --color-accent-dark: #0284c7;
+  --color-accent-light: #7dd3fc;
+
+  /* Dark Theme Backgrounds */
+  --bg-primary: #0f0c29;
+  --bg-secondary: #1b1638;
+  --bg-tertiary: #241d4f;
+
+  /* Dark Theme Text */
+  --text-primary: #f5f3ff;
+  --text-secondary: #ddd6fe;
+  --text-tertiary: #b8afd9;
+
+  /* Dark Theme Borders */
+  --border-color: #312e81;
+  --border-dark: #4338ca;
+}
+
+/* Base Styles */
+* {
+  @apply transition-colors duration-200;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+.active {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: underline !important;
+}
+
+body {
+  @apply bg-[var(--bg-primary)] text-[var(--text-primary)];
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold text-[var(--text-primary)];
+}
+
+h1 {
+  @apply text-4xl md:text-5xl;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl;
+  color: var(--color-primary);
+}
+
+h3 {
+  @apply text-2xl md:text-3xl;
+  color: var(--color-secondary);
+}
+
+/* Paragraphs */
+/* p {
+  @apply text-[var(--text-secondary)] leading-relaxed;
+} */
+
+/* Links */
+/* a {
+  @apply text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] underline-offset-2 hover:underline;
+} */
+
+/* Buttons - Using DaisyUI classes with custom colors */
+.btn {
+  @apply font-semibold transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white border-0;
+}
+
+.btn-secondary {
+  @apply bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-dark)] text-white border-0;
+}
+
+.btn-accent {
+  @apply bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] text-white border-0;
+}
+
+.btn-outline {
+  @apply border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white;
+}
+
+/* Cards */
+.card {
+  @apply bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  @apply bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-color)] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent;
+}
+
+/* Navigation */
+nav {
+  @apply bg-[var(--bg-secondary)] border-b border-[var(--border-color)] shadow-sm;
+}
+
+/* Divider */
+hr {
+  @apply border-[var(--border-color)];
+}
+
+/* Scroll Bar Styling */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-[var(--bg-secondary)];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[var(--color-primary)] rounded-full hover:bg-[var(--color-primary-dark)];
+}
+
+.padding-inline {
+  padding-inline: 0;
+}
+
+input {
+  padding-inline: 0;
+  padding-block: 0;
+}
