@@ -59,11 +59,11 @@
   --radius-box: 0.75rem;
 }
 
-html,
+/* html,
 body,
 #root {
   min-height: 100%;
-}
+} */
 
 body {
   @apply bg-base-100 text-base-content;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router";
 
 const Logo = ({
@@ -6,10 +5,15 @@ const Logo = ({
   link,
   to,
   text = "MessageApp",
+  logoSrc = "/logo.png",
+  logoAlt,
+  showText = false,
   linkClassName = "",
+  imageClassName = "",
   ...props
 }) => {
   const destination = to || link || "/";
+  const accessibleAlt = logoAlt || `${text} logo`;
 
   return (
     <div
@@ -22,13 +26,20 @@ const Logo = ({
         to={destination}
         aria-label={`${text} home`}
         className={[
-          "text-2xl font-bold tracking-tight transition-opacity hover:opacity-90",
+          "inline-flex items-center gap-2 font-bold tracking-tight transition-opacity hover:opacity-90",
           linkClassName,
         ]
           .filter(Boolean)
           .join(" ")}
       >
-        {text}
+        <img
+          src={logoSrc}
+          alt={accessibleAlt}
+          className={["h-10 w-auto object-contain", imageClassName]
+            .filter(Boolean)
+            .join(" ")}
+        />
+        {showText && <span className="hidden sm:inline text-xl">{text}</span>}
       </Link>
     </div>
   );
