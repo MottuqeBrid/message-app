@@ -12,7 +12,7 @@ const useAxiosSecure = () => {
     // Add Authorization header to every request
     axiosInstance.interceptors.request.use((config) => {
       if (token) {
-        // config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     });
@@ -22,7 +22,7 @@ const useAxiosSecure = () => {
       (error) => {
         if (error.response && error.response.status === 401) {
           // Clear token and redirect to login
-          // localStorage.removeItem("token");
+          localStorage.removeItem("token");
           const currentPath = window.location.pathname;
           if (!publicEndpoints.includes(currentPath)) {
             navigate("/auth/login");

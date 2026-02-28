@@ -12,7 +12,6 @@ const AuthProvider = ({ children }) => {
   const fetchCurrentUser = async () => {
     try {
       const response = await axiosSecure.get("/auth/me");
-      console.log(response);
       setUser(response.data?.user);
       setLoading(false);
     } catch (error) {

@@ -36,7 +36,6 @@ const Register = () => {
       username: data.username,
       password: data.password,
     };
-    console.log(payload);
 
     try {
       const response = await axiosInstance.post("/auth/register", payload);
