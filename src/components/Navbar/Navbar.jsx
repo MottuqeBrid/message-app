@@ -2,8 +2,11 @@ import { NavLink } from "react-router";
 import Logo from "../logo/logo";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { Link } from "react-router";
+import useAuth from "./../../hook/useAuth";
 
 const Navbar = () => {
+  const { user, loading } = useAuth();
+
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/friends", label: "Friends" },
@@ -58,11 +61,32 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-2">
           <ThemeToggle />
-          <Link to="/auth/login" className="btn btn-neutral">
-            Login
-          </Link>
+          {user ? (
+            <div className="ml-4">
+              <span className="font-medium border border-base-300 p-2 rounded-md">
+                {user.name}
+              </span>
+            </div>
+          ) : loading ? (
+            <span className="ml-4">Loading...</span>
+          ) : (
+            <Link to="/auth/register" className="btn btn-neutral mr-2">
+              Register
+            </Link>
+          )}
+          {user ? (
+            <Link to="/auth/logout" className="btn btn-neutral">
+              Logout
+            </Link>
+          ) : loading ? (
+            <span className="ml-4">Loading...</span>
+          ) : (
+            <Link to="/auth/login" className="btn btn-neutral">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>

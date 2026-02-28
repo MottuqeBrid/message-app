@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
-import axiosInstance from "./../../hook/axiosInstance‎";
+import axiosInstance from "../../hook/axiosInstance‎";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -41,9 +41,7 @@ const Register = () => {
     try {
       const response = await axiosInstance.post("/auth/register", payload);
       const resData = response?.data ?? {};
-
-      console.log(resData);
-
+      localStorage.setItem("token", resData.token);
       if (resData.success) {
         await Swal.fire({
           title: "Registration Successful",
@@ -52,7 +50,7 @@ const Register = () => {
           confirmButtonText: "Continue",
         });
 
-        navigate("/");
+        navigate("/messages");
         return;
       }
 

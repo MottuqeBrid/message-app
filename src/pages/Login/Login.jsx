@@ -1,8 +1,30 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router";
+import axiosInstance from "../../hook/axiosInstance‎";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const response = await axiosInstance.post("/auth/login", data);
+    const resData = response?.data ?? {};
+    console.log(resData);
+
+    if (resData.success) {
+      localStorage.setItem("token", resData.token);
+      navigate("/messages");
+    }
+  };
 
   return (
     <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center px-4 py-10">
@@ -29,7 +51,7 @@ const Login = () => {
               Enter your credentials to access your account.
             </p>
 
-            <form className="mt-2 space-y-4">
+            <form className="mt-2 space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <label className="form-control w-full">
                 <div className="label">
                   <span className="label-text font-medium">
@@ -41,6 +63,7 @@ const Login = () => {
                   placeholder="you@example.com or username"
                   className="input input-bordered w-full"
                   required
+                  {...register("email")}
                 />
               </label>
 
@@ -55,6 +78,7 @@ const Login = () => {
                     className="input input-bordered join-item w-full"
                     minLength={8}
                     required
+                    {...register("password")}
                   />
                   <button
                     type="button"
