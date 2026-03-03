@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import Logo from "../logo/logo";
+import Logo from "../Logo/Logo";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { Link } from "react-router";
 import useAuth from "./../../hook/useAuth";
