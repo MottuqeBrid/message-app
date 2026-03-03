@@ -3,30 +3,6 @@ import { io } from "socket.io-client";
 import useAuth from "../../hook/useAuth";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 
-const quickMessageOptions = {
-  1: [
-    "Say Hi 👋",
-    "Send a photo",
-    "Ask about weekend plan",
-    "Start audio call",
-  ],
-  2: [
-    "Send quick update",
-    "Share location",
-    "Invite to group",
-    "Start video call",
-  ],
-  3: ["Check project status", "Send file", "Schedule meeting", "Voice message"],
-  4: ["Say hello", "Send emoji", "Share contact", "Start chat"],
-};
-
-const DEFAULT_OPTIONS = [
-  "Say Hi 👋",
-  "How are you?",
-  "Let's catch up",
-  "Send update",
-];
-
 const Messages = () => {
   const { user } = useAuth();
   const [loadingFriends, setLoadingFriends] = useState(true);
@@ -53,13 +29,6 @@ const Messages = () => {
   useEffect(() => {
     currentUserIdRef.current = currentUserId;
   }, [currentUserId]);
-
-  const mapMessageOptions = useMemo(() => {
-    return friends.reduce((acc, friend, index) => {
-      acc[friend._id] = quickMessageOptions[index + 1] || DEFAULT_OPTIONS;
-      return acc;
-    }, {});
-  }, [friends]);
 
   const fetchFriends = async () => {
     setLoadingFriends(true);
@@ -194,11 +163,6 @@ const Messages = () => {
     [friends, selectedFriendId],
   );
 
-  const friendMessageOptions = useMemo(() => {
-    if (!selectedFriendId) return [];
-    return mapMessageOptions[selectedFriendId] || DEFAULT_OPTIONS;
-  }, [mapMessageOptions, selectedFriendId]);
-
   return (
     <div className="p-4 md:p-6 lg:p-8 space-y-8">
       <header>
@@ -227,7 +191,7 @@ const Messages = () => {
                   Loading friend list...
                 </p>
               ) : (
-                <div className="mt-3 space-y-2">
+                <div className="mt-3 space-y-2 max-h-90 overflow-y-auto scroll-auto">
                   {friends.map((friend) => (
                     <button
                       key={friend._id}
@@ -248,7 +212,10 @@ const Messages = () => {
                           </div>
                         </div>
                         <div>
-                          <p className="font-medium">{friend.name}</p>
+                          <p className="font-medium">
+                            {friend.name}{" "}
+                            {friend.isActive ? "(Online)" : "(Offline)"}
+                          </p>
                           <p className="text-xs text-base-content/70">
                             {typingByFriend[friend._id]
                               ? "Typing..."
@@ -294,7 +261,7 @@ const Messages = () => {
 
                   <div className="divider my-4" />
 
-                  <div className="space-y-2 mb-5">
+                  <div className="space-y-2 mb-5 max-h-96 overflow-y-auto scroll-auto">
                     {loadingConversation ? (
                       <p className="text-sm text-base-content/70">
                         Loading conversation...
@@ -321,20 +288,6 @@ const Messages = () => {
                         );
                       })
                     )}
-                  </div>
-
-                  <h4 className="font-medium mb-3">Message options</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {friendMessageOptions.map((option, index) => (
-                      <button
-                        key={`${selectedFriend._id}-${index}`}
-                        className="btn btn-outline justify-start"
-                        type="button"
-                        onClick={() => setNewMessage(option)}
-                      >
-                        {option}
-                      </button>
-                    ))}
                   </div>
 
                   <div className="divider my-4" />

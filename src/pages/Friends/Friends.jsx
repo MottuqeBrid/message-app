@@ -173,8 +173,11 @@ const Friends = () => {
                             />
                           </div>
                         </div>
-                        <span className="font-medium text-base-content">
-                          {friend.name}
+                        <span
+                          className={`font-medium ${friend.isActive ? "text-green-600" : "text-base-content/70"}`}
+                        >
+                          {friend.name}{" "}
+                          {friend.isActive ? "(Online)" : "(Offline)"}
                         </span>
                       </div>
                       <Link to={`/messages`} className="btn btn-ghost btn-xs">
