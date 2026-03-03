@@ -96,7 +96,6 @@ const Profile = () => {
   const fetchUserData = async () => {
     try {
       const res = await axiosInstance.get(`/user/profile`);
-      console.log(res);
       setUserData(res.data?.data || demoUser);
     } catch (error) {
       console.error(error);
@@ -133,7 +132,7 @@ const Profile = () => {
 
         <div className="px-5 pb-5 md:px-6 md:pb-6">
           <div className="-mt-14 md:-mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div className="flex items-end gap-4">
+            <div className="flex items-end gap-4 mt-4">
               <div className="avatar">
                 <div className="w-24 md:w-28 rounded-full ring ring-base-100 ring-offset-base-100 ring-offset-2">
                   <img src={userData.image.profile} alt={userData.name} />
@@ -179,7 +178,6 @@ const Profile = () => {
               <div className="mt-3 space-y-2 text-sm">
                 <p>
                   <span className="font-semibold">Email:</span> {demoUser.email}
-                  <span className="font-semibold">Email:</span> {userData.email}
                 </p>
                 <p>
                   <span className="font-semibold">Phone:</span> {userData.phone}
@@ -247,9 +245,9 @@ const Profile = () => {
               </div>
 
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                {listMap[activeList].map((user) => (
+                {listMap[activeList].map((user, index) => (
                   <div
-                    key={user._id}
+                    key={index}
                     className="rounded-xl border border-base-300 bg-base-200/30 p-3 flex items-center justify-between"
                   >
                     <div>

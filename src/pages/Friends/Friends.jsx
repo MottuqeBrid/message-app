@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const Friends = () => {
   const [loading, setLoading] = useState(true);
@@ -176,7 +177,9 @@ const Friends = () => {
                           {friend.name}
                         </span>
                       </div>
-                      <button className="btn btn-ghost btn-xs">Message</button>
+                      <Link to={`/messages`} className="btn btn-ghost btn-xs">
+                        Message
+                      </Link>
                     </div>
                   ))
                 )}
