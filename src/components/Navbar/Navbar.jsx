@@ -70,7 +70,9 @@ const Navbar = () => {
               </span>
             </div>
           ) : loading ? (
-            <span className="ml-4">Loading...</span>
+            <Link to="/auth/login" className="btn btn-neutral">
+              Loading...
+            </Link>
           ) : (
             <Link to="/auth/register" className="btn btn-neutral mr-2">
               Register
@@ -81,7 +83,9 @@ const Navbar = () => {
               Logout
             </Link>
           ) : loading ? (
-            <span className="ml-4">Loading...</span>
+            <Link to="/auth/login" className="btn btn-neutral">
+              Loading...
+            </Link>
           ) : (
             <Link to="/auth/login" className="btn btn-neutral">
               Login
